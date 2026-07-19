@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-DIM | MA PIQ Singosari</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-family-fonts/fonts.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #071612;
+            --primary-green: #1b4d3e;
+            --neon-green: #2ec4b6;
+            --accent-gold: #c5a880;
+            --text-light: #f4f7f6;
+            --card-glass: rgba(27, 77, 62, 0.15);
+            --border-glass: rgba(46, 196, 182, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #0f2e26 0%, var(--bg-dark) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Futuristic Grid Effect */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(46, 196, 182, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46, 196, 182, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        header {
+            padding: 2rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(46, 196, 182, 0.5));
+        }
+
+        .brand-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #ffffff, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-text p {
+            font-size: 0.8rem;
+            color: var(--neon-green);
+            letter-spacing: 1px;
+        }
+
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            flex: 1;
+            gap: 40px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 550px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(46, 196, 182, 0.1);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(46, 196, 182, 0.1);
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h2 span {
+            background: linear-gradient(135deg, var(--neon-green), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            color: #a0aec0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .action-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .btn-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            color: var(--text-light);
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-link::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-link:hover::before {
+            left: 100%;
+        }
+
+        .btn-link:hover {
+            transform: translateY(-3px);
+            border-color: var(--neon-green);
+            background: rgba(27, 77, 62, 0.3);
+            box-shadow: 0 10px 25px rgba(46, 196, 182, 0.15);
+        }
+
+        .btn-info h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .btn-info p {
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .btn-link:hover .btn-icon {
+            background: var(--neon-green);
+            color: var(--bg-dark);
+            transform: rotate(45deg);
+        }
+
+        /* Right Side: Futuristic Mosque Illustration Window */
+        .visual-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .image-frame {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 450px;
+            border-radius: 24px;
+            padding: 10px;
+            background: linear-gradient(135deg, var(--border-glass), transparent);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(26, 196, 182, 0.2);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .mosque-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            opacity: 0.85;
+            transition: all 0.5s ease;
+        }
+
+        .image-frame:hover .mosque-img {
+            opacity: 1;
+            scale: 1.02;
+        }
+
+        /* Decorative HUD element for futuristic look */
+        .hud-element {
+            position: absolute;
+            border: 2px solid var(--neon-green);
+            width: 30px;
+            height: 30px;
+            transition: all 0.5s;
+        }
+        .hud-tl { top: -5px; left: -5px; border-right: none; border-bottom: none; }
+        .hud-br { bottom: -5px; right: -5px; border-left: none; border-top: none; }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #718096;
+            z-index: 10;
+            position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            main {
+                flex-direction: column-reverse;
+                padding: 3rem 5%;
+                text-align: center;
+            }
+            .hero-content {
+                max-width: 100%;
+            }
+            .action-cards {
+                text-align: left;
+            }
+            .image-frame {
+                height: 300px;
+                margin-bottom: 2rem;
+            }
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container">
+            <!-- Ganti src dengan URL Logo MA PIQ Anda -->
+            <img src="LOGO MA PIQ.png" alt="Logo MA PIQ" class="logo-img">
+            <div class="brand-text">
+                <h1>MA PIQ</h1>
+                <p>SINGOSARI</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Left Side: Text and Buttons -->
+        <div class="hero-content">
+            <div class="hero-tag">Digital Ecosystem</div>
+            <h2>Sistem Informasi <span>e-DIM</span></h2>
+            <p class="hero-description">Platform digital integratif Madrasah Aliyah PIQ Singosari untuk efisiensi manajemen data pengajaran, presensi, serta penilaian kinerja tenaga pendidik secara akurat dan real-time.</p>
+            
+            <div class="action-cards">
+                <!-- Link 1: Absensi -->
+                <a href="https://script.google.com/macros/s/AKfycbwrQtDsgg5XS_h7NcvHxAygmwKCTq4OCkNGsVRO2w_EW98R2bPY56oIo-KnssVKugf-mw/exec" target="_blank" class="btn-link">
+                    <div class="btn-info">
+                        <h3>Absensi & Jurnal Kelas</h3>
+                        <p>Pencatatan kehadiran siswa dan agenda kelas harian</p>
+                    </div>
+                    <div class="btn-icon">↗</div>
+                </a>
+
+                <!-- Link 2: Penilaian -->
+                <a href="https://script.google.com/macros/s/AKfycbzgjSZGY7s9cwP1CMokdIsEuaEt80kkgPlBSHrMZJbHfZKmL1Ugjofq4NO1ss1vulww/exec" target="_blank" class="btn-link">
+                    <div class="btn-info">
+                        <h3>Form Penilaian Guru</h3>
+                        <p>Evaluasi berkala dan pelaporan kinerja tenaga pendidik</p>
+                    </div>
+                    <div class="btn-icon">↗</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Right Side: Mosque View Wrapper -->
+        <div class="visual-container">
+            <div class="image-frame">
+                <div class="hud-element hud-tl"></div>
+                <div class="hud-element hud-br"></div>
+                <!-- Ganti src dengan URL Gambar Masjid BA Murtadho Anda -->
+                <img src="Masjid.jpg" alt="Masjid BA Murtadho" class="mosque-img">
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2026 MA PIQ Singosari. All Rights Reserved. Powered by Google Apps Script.</p>
+    </footer>
+
+</body>
+</html>
